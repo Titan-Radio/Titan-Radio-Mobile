@@ -3,8 +3,8 @@ import React from "react";
 import { assests, COLORS } from "../../constants";
 import { FONTFAM, FONTSIZES } from "../../constants/fonts";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { RootStackParamList } from "../../App";
 import { homeScreenProps } from "../../screens/Home/Home";
+import { RootStackParamList } from "../CustomNavigation/CustomNavigation";
 
 interface exploreSection {
   id: number;
@@ -121,7 +121,7 @@ const exploreStyles = StyleSheet.create({
   },
   title: {
     color: "black",
-    marginTop: 32,
+    marginTop: 100,
     fontSize: FONTSIZES.xLarge,
     fontFamily: FONTFAM.interBold,
   },

@@ -4,12 +4,39 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../../constants";
 import { Explore, Greeting } from "../../components/Home/Home";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../App";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../components/CustomNavigation/CustomNavigation";
 
-export type homeScreenProps = StackNavigationProp<RootStackParamList,'Home'>;
+export type homeScreenProps = StackNavigationProp<RootStackParamList, "Home">;
 
-const Home = () => {
+export type TabParamList = {
+  HomeScreen: undefined;
+  Schedule: undefined;
+};
+
+// export const HomeTabScreen: React.FC = () => {
+//   return (
+//     <Stack.Navigator>
+//         <Stack.Screen
+//           name="Home"
+//           component={HomeTabScreen}
+//         />
+//         <Stack.Screen
+//           name="Blogs"
+//           component={Blogs}
+//           options={{
+//             headerShown: false,
+//           }}
+//         />
+//         <Stack.Screen
+//           name="About"
+//           component={About}
+//         />
+//       </Stack.Navigator>
+//   );
+// };
+
+const HomeScreen: React.FC = () => {
   const navigation = useNavigation<homeScreenProps>();
   return (
     <>
@@ -17,7 +44,7 @@ const Home = () => {
         <Greeting />
       </SafeAreaView>
       <SafeAreaView style={styles.bottomContainer}>
-        <Explore navigation={navigation}/>
+        <Explore navigation={navigation} />
       </SafeAreaView>
     </>
   );
@@ -38,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;

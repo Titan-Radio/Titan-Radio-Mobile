@@ -1,28 +1,15 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import Home from "./screens/Home/Home";
 import { useFonts } from "expo-font";
 import { COLORS } from "./constants";
-import Blogs from "./screens/Blogs/Blogs";
-import About from "./screens/About/About";
+import HomeNavigation from "./components/CustomNavigation/CustomNavigation";
 
-export type RootStackParamList = {
-  Home: undefined;
-  Blogs: undefined;
-  About: undefined;
-  TheFeed: undefined;
-  AfterHours: undefined;
-};
 
 export type TabParamList = {
-  Home: undefined;
+  HomeScreen: undefined;
   Schedule: undefined;
 };
-
-const Stack = createStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<TabParamList>();
 
 const theme = {
   ...DefaultTheme,
@@ -31,6 +18,9 @@ const theme = {
     background: COLORS.trPurple,
   },
 };
+
+const Tab = createBottomTabNavigator<TabParamList>();
+
 
 const App: React.FC = () => {
   const [loaded] = useFonts({
@@ -46,31 +36,22 @@ const App: React.FC = () => {
   if (!loaded) return null;
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName="Home"
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Blogs" component={Blogs} />
-        <Stack.Screen name="About" component={About} />
-      </Stack.Navigator>
-      {/* <Tab.Navigator
+       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: any;
 
-            if (route.name === "Home") {
+            if (route.name === "HomeScreen") {
               iconName = focused ? "home" : "home-outline";
             }
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: "tomato",
+          tabBarActiveTintColor: "gray",
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="Home" component={Home} />
-      </Tab.Navigator> */}
+        <Tab.Screen name="HomeScreen" component={HomeNavigation} options={{headerShown: false}}/>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
