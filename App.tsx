@@ -7,7 +7,7 @@ import HomeNavigation from "./components/CustomNavigation/CustomNavigation";
 
 
 export type TabParamList = {
-  HomeScreen: undefined;
+  Home: undefined;
   Schedule: undefined;
 };
 
@@ -41,7 +41,7 @@ const App: React.FC = () => {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName: any;
 
-            if (route.name === "HomeScreen") {
+            if (route.name === "Home") {
               iconName = focused ? "home" : "home-outline";
             }
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -50,7 +50,7 @@ const App: React.FC = () => {
           tabBarInactiveTintColor: "gray",
         })}
       >
-        <Tab.Screen name="HomeScreen" component={HomeNavigation} options={{headerShown: false}}/>
+        <Tab.Screen name="Home" component={HomeNavigation} options={{headerShown: false}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

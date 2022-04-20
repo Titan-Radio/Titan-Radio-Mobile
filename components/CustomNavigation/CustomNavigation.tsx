@@ -2,8 +2,8 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../../screens/Home/Home";
-import Blogs from "../../screens/Blogs/Blogs";
 import About from "../../screens/About/About";
+import Blog from "../../screens/Blog/Blog";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -21,7 +21,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="Blogs"
-        component={Blogs}
+        component={Blog}
         options={{
           headerShown: false,
         }}
