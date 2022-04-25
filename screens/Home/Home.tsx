@@ -14,28 +14,6 @@ export type TabParamList = {
   Schedule: undefined;
 };
 
-// export const HomeTabScreen: React.FC = () => {
-//   return (
-//     <Stack.Navigator>
-//         <Stack.Screen
-//           name="Home"
-//           component={HomeTabScreen}
-//         />
-//         <Stack.Screen
-//           name="Blogs"
-//           component={Blogs}
-//           options={{
-//             headerShown: false,
-//           }}
-//         />
-//         <Stack.Screen
-//           name="About"
-//           component={About}
-//         />
-//       </Stack.Navigator>
-//   );
-// };
-
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<homeScreenProps>();
   return (
