@@ -1,12 +1,9 @@
-import { View, Text } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-interface BlogImageType {
-  guild: {
-    rendered: string;
-  };
-}
+import { useSelector } from "react-redux";
+import { rootState } from "../../interface";
+import { useDispatch } from "react-redux";
+import { resetPage } from "../../../redux/blogSlice";
 
 export interface BlogType {
   id: number;
@@ -30,7 +27,9 @@ const useBlog = (url: string) => {
   const [isLoading, setLoading] = useState<boolean>();
   const [blogs, setBlogs] = useState<BlogType[]>([]);
   const [success, setSuccess] = useState(false);
-  const [page, setPage] = useState<number>(1);
+  var filtered;
+  const page = useSelector((state: rootState) => state.blog.page);
+  const dispatch = useDispatch();
   const [isError, setErrror] = useState<boolean>(false);
 
   useEffect(() => {
@@ -54,9 +53,14 @@ const useBlog = (url: string) => {
                 image: imageRes?.data?.guid.rendered,
               },
             ]);
-          
           })
         );
+        // filtered = blogs.filter(
+        //   (value, index, self) =>
+        //     index ===
+        //     self.findIndex((t) => t.id === value.id && t.title === value.title)
+        // );
+
         setLoading(false);
         setSuccess(true);
       } catch (err) {
@@ -66,7 +70,10 @@ const useBlog = (url: string) => {
       }
     };
     fetchData();
-  }, []);
+    return () => {
+      dispatch(resetPage());
+    };
+  }, [page]);
 
   return [isLoading, blogs, isError, success] as const;
 };

@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, Image, FlatList, Linking } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SvgXml } from "react-native-svg";
 import { useDispatch } from "react-redux";
 import { FONTFAM, FONTSIZES } from "../../constants/fonts";
+import { incPage } from "../../redux/blogSlice";
 import { setBlogRoute } from "../../redux/navSlice";
 import { blogScreenProps } from "../../screens/Blog/Blog";
-import { RootStackParamList } from "../CustomNavigation/CustomNavigation";
 import { convertSymbolsFromCode } from "./helper/helperFunction";
 import { BlogType } from "./Hooks/useBlog";
 
@@ -25,8 +25,27 @@ interface AllBlogsProps {
   navigation: blogScreenProps;
 }
 
+export const BlogHeader: React.FC = () => {
+  return (
+    <View style={headingStyles.container}>
+      <SvgXml xml={xml} style={headingStyles.image} />
+      <View style={headingStyles.textContainer}>
+        <Text style={headingStyles.textTitle}>Blogs</Text>
+        <Text style={headingStyles.textSubTitle}>
+          All blogs from Titan Radio
+        </Text>
+      </View>
+    </View>
+  );
+};
+
 export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
   const { blogs, navigation } = props;
+  const dispatch = useDispatch();
+  const loadMore = () => {
+    console.log("load more");
+    dispatch(incPage());
+  };
   return (
     <>
       <View>
@@ -35,6 +54,8 @@ export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
           renderItem={(blog: any) => (
             <Blog blog={blog.item} navigation={navigation} />
           )}
+          onEndReachedThreshold={0.01}
+          onEndReached={() => loadMore()}
         />
       </View>
     </>
@@ -67,20 +88,6 @@ export const Blog: React.FC<BlogProps> = (props) => {
         </Text>
       </View>
     </TouchableWithoutFeedback>
-  );
-};
-
-export const BlogHeader: React.FC = () => {
-  return (
-    <View style={headingStyles.container}>
-      <SvgXml xml={xml} style={headingStyles.image} />
-      <View style={headingStyles.textContainer}>
-        <Text style={headingStyles.textTitle}>Blogs</Text>
-        <Text style={headingStyles.textSubTitle}>
-          All blogs from Titan Radio
-        </Text>
-      </View>
-    </View>
   );
 };
 
