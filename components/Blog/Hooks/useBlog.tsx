@@ -47,7 +47,6 @@ const useBlog = (url: string) => {
             let imageRes = await axios.get(
               blog._links["wp:featuredmedia"][0].href
             );
-            console.log(imageRes.data?.guid.rendered);
             setBlogs((b) => [
               ...b,
               {

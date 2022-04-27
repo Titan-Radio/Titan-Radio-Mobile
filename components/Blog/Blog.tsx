@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet, Image, FlatList, Linking } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SvgXml } from "react-native-svg";
+import { useDispatch } from "react-redux";
 import { FONTFAM, FONTSIZES } from "../../constants/fonts";
+import { setBlogRoute } from "../../redux/navSlice";
+import { blogScreenProps } from "../../screens/Blog/Blog";
+import { RootStackParamList } from "../CustomNavigation/CustomNavigation";
 import { convertSymbolsFromCode } from "./helper/helperFunction";
 import { BlogType } from "./Hooks/useBlog";
 
@@ -18,16 +22,19 @@ const xml = `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="
 
 interface AllBlogsProps {
   blogs: BlogType[];
+  navigation: blogScreenProps;
 }
 
 export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
-  const { blogs } = props;
+  const { blogs, navigation } = props;
   return (
     <>
       <View>
         <FlatList
           data={blogs}
-          renderItem={(blog: any) => <Blog blog={blog.item} />}
+          renderItem={(blog: any) => (
+            <Blog blog={blog.item} navigation={navigation} />
+          )}
         />
       </View>
     </>
@@ -36,12 +43,15 @@ export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
 
 interface BlogProps {
   blog: BlogType;
+  navigation: blogScreenProps;
 }
 
 export const Blog: React.FC<BlogProps> = (props) => {
-  const { blog } = props;
+  const dispatch = useDispatch();
+  const { blog, navigation } = props;
   const goToBlog = () => {
-    Linking.openURL(blog.link);
+    dispatch(setBlogRoute(blog.link));
+    navigation.navigate(`Browser`);
   };
   return (
     <TouchableWithoutFeedback onPress={goToBlog}>

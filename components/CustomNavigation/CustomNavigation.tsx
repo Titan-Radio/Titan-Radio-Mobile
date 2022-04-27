@@ -4,11 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../../screens/Home/Home";
 import About from "../../screens/About/About";
 import Blog from "../../screens/Blog/Blog";
+import Browser from "../../screens/Browser/Browser";
 
 export type RootStackParamList = {
   Home: undefined;
   Blogs: undefined;
   About: undefined;
+  Browser: undefined;
   TheFeed: undefined;
   AfterHours: undefined;
 };
@@ -27,6 +29,7 @@ const HomeNavigation = () => {
         }}
       />
       <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="Browser" component={Browser}/>
     </Stack.Navigator>
   );
 };

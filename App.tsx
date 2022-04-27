@@ -4,7 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import { COLORS } from "./constants";
 import HomeNavigation from "./components/CustomNavigation/CustomNavigation";
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export type TabParamList = {
   Home: undefined;
@@ -21,7 +22,6 @@ const theme = {
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-
 const App: React.FC = () => {
   const [loaded] = useFonts({
     InterBold: require("./assets/fonts/Inter-Bold.ttf"),
@@ -35,23 +35,29 @@ const App: React.FC = () => {
   });
   if (!loaded) return null;
   return (
-    <NavigationContainer theme={theme}>
-       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName: any;
-            if (route.name === "Home") {
-              iconName = focused ? "home" : "home-outline";
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: "gray",
-          tabBarInactiveTintColor: "gray",
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeNavigation} options={{headerShown: false}}/>
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer theme={theme}>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName: any;
+              if (route.name === "Home") {
+                iconName = focused ? "home" : "home-outline";
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: "gray",
+            tabBarInactiveTintColor: "gray",
+          })}
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeNavigation}
+            options={{ headerShown: false }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
