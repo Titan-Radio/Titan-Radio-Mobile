@@ -21,6 +21,9 @@ const Browser: React.FC = () => {
   const gobackPage = () => {
     browserRef.current?.goBack();
   };
+  const goForwardPage = () => {
+    browserRef.current?.goForward();
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.back}>
@@ -32,7 +35,7 @@ const Browser: React.FC = () => {
         <AntDesign name="left" size={32} color="white" onPress={gobackPage} />
       </View>
       <View style={styles.forwardPage}>
-        <AntDesign name="right" size={32} color="white" onPress={gobackPage} />
+        <AntDesign name="right" size={32} color="white" onPress={goForwardPage} />
       </View>
       </View>
     </SafeAreaView>
