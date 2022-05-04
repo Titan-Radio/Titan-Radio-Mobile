@@ -30,7 +30,6 @@ const Blog: React.FC = () => {
       <BlogHeader />
       {isLoading && <Text> Loading... </Text>}
       {success && <AllBlogs blogs={blogs} navigation={navigation} />}
-      {isLoading && <Text> Loading... </Text>}
     </SafeAreaView>
   );
 };

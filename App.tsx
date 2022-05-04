@@ -6,10 +6,12 @@ import { COLORS } from "./constants";
 import HomeNavigation from "./components/CustomNavigation/CustomNavigation";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Browser from "./screens/Browser/Browser";
 
 export type TabParamList = {
   Home: undefined;
   Schedule: undefined;
+  Browser: undefined
 };
 
 const theme = {

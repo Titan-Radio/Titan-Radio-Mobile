@@ -47,12 +47,7 @@ export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
   };
   return (
     <>
-      <View
-      // ref={scrollRef}
-      // onContentSizeChange={() =>
-      //   scrollRef.current?.scrollTo({ y: height - 100 })
-      // }
-      >
+      <View>
         <FlatList
           data={blogs}
           renderItem={(blog: any) => (
@@ -143,6 +138,9 @@ const blogStyles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 12,
     marginBottom: 0,
+    paddingBottom:12,
+    borderBottomWidth: 1,
+    borderColor:"grey",
     width: "100%",
     marginVertical: 12,
     marginHorizontal: 12,
