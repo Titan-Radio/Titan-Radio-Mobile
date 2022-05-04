@@ -43,12 +43,16 @@ export const AllBlogs: React.FC<AllBlogsProps> = (props) => {
   const { blogs, navigation } = props;
   const dispatch = useDispatch();
   const loadMore = () => {
-    console.log("load more");
     dispatch(incPage());
   };
   return (
     <>
-      <View>
+      <View
+      // ref={scrollRef}
+      // onContentSizeChange={() =>
+      //   scrollRef.current?.scrollTo({ y: height - 100 })
+      // }
+      >
         <FlatList
           data={blogs}
           renderItem={(blog: any) => (

@@ -8,6 +8,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../components/CustomNavigation/CustomNavigation";
 import { useSelector } from "react-redux";
 import { rootState } from "../../components/interface";
+import { useDispatch } from "react-redux";
+import { resetPage } from "../../redux/blogSlice";
 
 export type blogScreenProps = StackNavigationProp<RootStackParamList, "Blogs">;
 
@@ -16,15 +18,19 @@ const Blog: React.FC = () => {
   const [isLoading, blogs, isError, success] = useBlog(
     `https://www.titanradio.org/wp-json/wp/v2/posts?page=${page}`
   );
+  const dispatch = useDispatch();
   const navigation = useNavigation<blogScreenProps>();
   useEffect(() => {
-    console.log(page);
+    return () => {
+      dispatch(resetPage());
+    };
   }, []);
   return (
     <SafeAreaView style={styles.BlogContainer}>
       <BlogHeader />
       {isLoading && <Text> Loading... </Text>}
       {success && <AllBlogs blogs={blogs} navigation={navigation} />}
+      {isLoading && <Text> Loading... </Text>}
     </SafeAreaView>
   );
 };

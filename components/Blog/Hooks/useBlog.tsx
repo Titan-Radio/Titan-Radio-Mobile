@@ -46,6 +46,17 @@ const useBlog = (url: string) => {
             let imageRes = await axios.get(
               blog._links["wp:featuredmedia"][0].href
             );
+            // setBlogs((b) => {
+            //   return [
+            //     ...new Set([
+            //       ...b,
+            //       {
+            //         ...blog,
+            //         image: imageRes?.data?.guid.rendered,
+            //       },
+            //     ]),
+            //   ];
+            // });
             setBlogs((b) => [
               ...b,
               {
@@ -55,12 +66,6 @@ const useBlog = (url: string) => {
             ]);
           })
         );
-        // filtered = blogs.filter(
-        //   (value, index, self) =>
-        //     index ===
-        //     self.findIndex((t) => t.id === value.id && t.title === value.title)
-        // );
-
         setLoading(false);
         setSuccess(true);
       } catch (err) {
@@ -71,7 +76,6 @@ const useBlog = (url: string) => {
     };
     fetchData();
     return () => {
-      dispatch(resetPage());
     };
   }, [page]);
 
