@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { rootState } from "../../components/interface";
 import { useDispatch } from "react-redux";
 import { resetPage } from "../../redux/blogSlice";
+import Layout from "../../components/Layout/Layout";
 
 export type blogScreenProps = StackNavigationProp<RootStackParamList, "Blogs">;
 
@@ -26,19 +27,13 @@ const Blog: React.FC = () => {
     };
   }, []);
   return (
-    <SafeAreaView style={styles.BlogContainer}>
+    <Layout>
       <BlogHeader />
       {isLoading && <Text> Loading... </Text>}
       {success && <AllBlogs blogs={blogs} navigation={navigation} />}
-    </SafeAreaView>
+    </Layout>
   );
 };
 
-const styles = StyleSheet.create({
-  BlogContainer: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-});
 
 export default Blog;

@@ -3,31 +3,13 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { rootState } from "../../interface";
 import { useDispatch } from "react-redux";
-import { resetPage } from "../../../redux/blogSlice";
+import { BlogType } from "../interface";
 
-export interface BlogType {
-  id: number;
-  date_gmt: string;
-  slug: string;
-  link: string;
-  title: {
-    rendered: string;
-  };
-  _links: {
-    "wp:featuredmedia": [
-      {
-        href: string;
-      }
-    ];
-  };
-  image: any;
-}
 
 const useBlog = (url: string) => {
   const [isLoading, setLoading] = useState<boolean>();
   const [blogs, setBlogs] = useState<BlogType[]>([]);
   const [success, setSuccess] = useState(false);
-  var filtered;
   const page = useSelector((state: rootState) => state.blog.page);
   const dispatch = useDispatch();
   const [isError, setErrror] = useState<boolean>(false);
@@ -46,17 +28,6 @@ const useBlog = (url: string) => {
             let imageRes = await axios.get(
               blog._links["wp:featuredmedia"][0].href
             );
-            // setBlogs((b) => {
-            //   return [
-            //     ...new Set([
-            //       ...b,
-            //       {
-            //         ...blog,
-            //         image: imageRes?.data?.guid.rendered,
-            //       },
-            //     ]),
-            //   ];
-            // });
             setBlogs((b) => [
               ...b,
               {
