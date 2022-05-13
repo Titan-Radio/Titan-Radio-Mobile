@@ -1,7 +1,9 @@
+import React, { ReactElement } from "react";
+
 interface contentListType {
   id: String;
   header: String;
-  content: String;
+  content: String | ReactElement<any, any>;
 }
 
 interface contentNavType {
@@ -9,4 +11,10 @@ interface contentNavType {
   content: String;
 }
 
-export { contentListType, contentNavType };
+interface socialLinkType {
+  url: string;
+  shortURL: string;
+  icon: string;
+}
+
+export { contentListType, contentNavType, socialLinkType };

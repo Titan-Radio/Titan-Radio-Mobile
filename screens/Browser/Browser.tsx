@@ -16,7 +16,7 @@ const Browser: React.FC = () => {
   const url = useSelector((state: rootState) => state.nav.blogRoutes);
   const browserRef = useRef<WebView>(null);
   const goback = () => {
-    navigation.navigate("Blogs");
+    navigation.goBack();
   };
   const gobackPage = () => {
     browserRef.current?.goBack();

@@ -1,0 +1,17 @@
+export const url: string[] = [
+  "https://www.titanradio.org/wp-content/uploads/2022/03/julio-reyes-1008x1024.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/Cameron-Macedonio-1024x1022.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/shelby-scaled-e1646418939243-1024x687.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/amanda-e1646431905907.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/gabriel-e1646684390250-1024x663.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/marie-scaled-e1646684532998-1024x713.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/brandon1-e1646684590161-1024x877.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/Grant-Kitchen-1-1024x933.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/516A2118-1024x948.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/63F13728-6435-4C10-8C3B-FFE85A567024-e1646418600145-1024x867.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/catalina-979x1024.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/jack-e1647468116139-1024x788.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/abigail-e1647468038948-1024x744.jpeg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/516A2118-1024x948.jpg",
+  "https://www.titanradio.org/wp-content/uploads/2022/03/andrew-e1647030679689-1024x682.jpeg",
+];

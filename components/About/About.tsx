@@ -6,12 +6,13 @@ import { COLORS } from "../../constants";
 import { FONTFAM, FONTSIZES } from "../../constants/fonts";
 import { useSwipe } from "./Hooks/useSwipe";
 import { contentListType, contentNavType } from "./interface";
+import { TeamCollection } from "./TeamImages/TeamCollection";
+import {FollowUs} from "./FollowUs/FollowUs";
 
 const bigLogo = bigLogoXml;
 const bannerText = soundOfCSUF;
 
 /* ABOUT HEADER COMPONENT */
-
 export const AboutHeader = () => {
   return (
     <View style={headerStyles.container}>
@@ -34,14 +35,16 @@ const contentList: contentListType[] = [
   {
     id: "c2",
     header: "Our team",
-    content: "Next content",
+    content: <TeamCollection/>
   },
   {
     id: "c3",
     header: "Follow us",
-    content: "https://www.titanradio.org/",
+    content: <FollowUs/>,
   },
 ];
+
+
 
 export const AboutContent = () => {
   const { onTouchStart, onTouchEnd } = useSwipe(onSwipeLeft, onSwipeRight, 6);
@@ -137,7 +140,7 @@ const aboutStyles = StyleSheet.create({
   },
   sub: {
     textAlign: "center",
-    lineHeight: 30,
+    lineHeight: 25,
     marginBottom: 32,
     marginHorizontal: 20,
     fontSize: FONTSIZES.medium,
